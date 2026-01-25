@@ -22,9 +22,9 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.grub.zfsSupport = true;
-  # Ensure LVM thin-pool is available during early boot for /data.
-  boot.initrd.kernelModules = [ "dm_mod" "dm_thin_pool" ];
-  boot.kernelModules = [ "dm_thin_pool" ];
+  # Ensure LVM thin-pool and ZFS are available during early boot.
+  boot.initrd.kernelModules = [ "dm_mod" "dm_thin_pool" "zfs" ];
+  boot.kernelModules = [ "dm_thin_pool" "zfs" ];
   services.lvm.enable = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = true;

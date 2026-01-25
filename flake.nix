@@ -24,9 +24,6 @@
         ./configuration.nix
         ./disk-config.nix
         {
-          # Networking and ZFS requirements
-          networking.hostId = "deadbeef"; 
-          
           # UEFI Bootloader
           boot.loader.grub.enable = true;
           boot.loader.grub.efiSupport = true;
