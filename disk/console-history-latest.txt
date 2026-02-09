@@ -1,0 +1,218 @@
+Oracle AAVMF Version: 1.6.6.cvm
+PEIM Loaded: PcdPeim.efi
+PEIM Loaded: ResetSystemPei.efi
+PEIM Loaded: MemoryInit.efi
+PEIM Loaded: PeiCore.efi
+PEIM Loaded: PcdPeim.efi
+PEIM Loaded: CpuPei.efi
+PEIM Loaded: PlatformPei.efi
+PEIM Loaded: DxeIpl.efi
+PEI Phase: Complete.
+PEIM Loaded: DxeCore.efi
+Loading DXE Modules:
+Image Loaded: DevicePathDxe.efi
+Image Loaded: PcdDxe.efi
+Image Loaded: FdtClientDxe.efi
+Image Loaded: RuntimeDxe.efi
+Image Loaded: SecurityStubDxe.efi
+Image Loaded: MetronomeDxe.efi
+Image Loaded: HiiDatabase.efi
+Image Loaded: SerialDxe.efi
+Image Loaded: ReportStatusCodeRouterRuntimeDxe.efi
+Image Loaded: DpcDxe.efi
+Image Loaded: EbcDxe.efi
+Image Loaded: VirtioFdtDxe.efi
+Image Loaded: FaultTolerantWriteDxe.efi
+Image Loaded: ResetSystemRuntimeDxe.efi
+Image Loaded: ArmGicDxe.efi
+Image Loaded: tftpDynamicCommand.efi
+Image Loaded: httpDynamicCommand.efi
+Image Loaded: LinuxInitrdDynamicShellCommand.efi
+Image Loaded: SetupBrowser.efi
+Image Loaded: SmbiosDxe.efi
+Image Loaded: ArmPciCpuIo2Dxe.efi
+Image Loaded: PciHotPlugInitDxe.efi
+Image Loaded: QemuRamfbDxe.efi
+Image Loaded: LogoDxe.efi
+Image Loaded: ArmCpuDxe.efi
+Image Loaded: ArmTimerDxe.efi
+Image Loaded: DisplayEngine.efi
+Image Loaded: DriverHealthManagerDxe.efi
+Image Loaded: SmbiosPlatformDxe.efi
+Image Loaded: RamDiskDxe.efi
+Image Loaded: HighMemDxe.efi
+Image Loaded: ArmVeNorFlashDxe.efi
+Image Loaded: WatchdogTimer.efi
+Image Loaded: PciHostBridgeDxe.efi
+Image Loaded: VariableRuntimeDxe.efi
+Image Loaded: CapsuleRuntimeDxe.efi
+Image Loaded: MonotonicCounterRuntimeDxe.efi
+Image Loaded: RealTimeClock.efi
+Image Loaded: BdsDxe.efi
+Image Loaded: PlatformHasAcpiDtDxe.efi
+Image Loaded: PlatformDxe.efi
+Image Loaded: Tcg2Dxe.efi
+Image Loaded: ConPlatformDxe.efi
+Image Loaded: ConSplitterDxe.efi
+Image Loaded: GraphicsConsoleDxe.efi
+Image Loaded: TerminalDxe.efi
+Image Loaded: DiskIoDxe.efi
+Image Loaded: PartitionDxe.efi
+Image Loaded: Fat.efi
+Image Loaded: EnglishDxe.efi
+Image Loaded: UdfDxe.efi
+Image Loaded: VirtioFsDxe.efi
+Image Loaded: VirtioBlkDxe.efi
+Image Loaded: VirtioNetDxe.efi
+Image Loaded: VirtioScsiDxe.efi
+Image Loaded: VirtioRngDxe.efi
+Image Loaded: QemuKernelLoaderFsDxe.efi
+Image Loaded: VlanConfigDxe.efi
+Image Loaded: MnpDxe.efi
+Image Loaded: ArpDxe.efi
+Image Loaded: Dhcp4Dxe.efi
+Image Loaded: Ip4Dxe.efi
+Image Loaded: Udp4Dxe.efi
+Image Loaded: Mtftp4Dxe.efi
+Image Loaded: TcpDxe.efi
+Image Loaded: UefiPxeBcDxe.efi
+Image Loaded: IScsiDxe.efi
+Image Loaded: ScsiBus.efi
+Image Loaded: ScsiDisk.efi
+Image Loaded: NvmExpressDxe.efi
+Image Loaded: AcpiTableDxe.efi
+Image Loaded: BootGraphicsResourceTableDxe.efi
+Image Loaded: PciBusDxe.efi
+Image Loaded: VirtioPciDeviceDxe.efi
+Image Loaded: Virtio10.efi
+Image Loaded: VirtioGpuDxe.efi
+Image Loaded: UhciDxe.efi
+Image Loaded: EhciDxe.efi
+Image Loaded: XhciDxe.efi
+Image Loaded: UsbBusDxe.efi
+Image Loaded: UsbKbDxe.efi
+Image Loaded: UsbMassStorageDxe.efi
+Image Loaded: QemuFwCfgAcpiPlatform.efi
+DXE Phase: Complete.
+Tpm2SubmitCommand - Tcg2 - Not Found
+Tpm2GetCapabilityPcrs fail!
+Tpm2SubmitCommand - Tcg2 - Not Found
+PCI Info:
+PciBus: [00|00|00]
+PciDev [1B36:0008:1AF4:1100]: [00|00|00]
+PciDev [1AF4:1050:108E:1100]: [00|01|00]
+PciDev [1B36:000D:1AF4:1100]: [00|02|00]
+PciDev [1AF4:1048:108E:1100]: [18|00|00]
+PciDev [1AF4:1041:108E:1100]: [00|06|00]
+[2J[01;01H[=3h[2J[01;01HSecureBoot: Disabled
+Boot Options:
+   Boot0001: UEFI Misc Device  <VenHw(93E34C7E-B50E-11DF-9223-2443DFD72085,00)>
+   Boot0002: UEFI ORACLE BlockVolume   <PciRoot(0x0)/Pci(0x5,0x7)/Pci(0x0,0x0)/Scsi(0x0,0x1)>
+   Boot0003: UEFI PXEv4 (MAC:020017002E89)  <PciRoot(0x0)/Pci(0x6,0x0)/MAC(020017002E89,0x1)/IPv4(0.0.0.0)>
+   Boot0004: EFI Internal Shell  <Fv(64074AFE-340A-4BE6-94BA-91B5B4D0F71E)/FvFile(7C04A583-9E3E-4F1C-AD65-E05268D0B4D1)>
+BootNext: 
+Failed to Load Boot0001 "UEFI Misc Device" from VenHw(93E34C7E-B50E-11DF-9223-2443DFD72085,00): Not Found
+Loading Boot0002 "UEFI ORACLE BlockVolume " from PciRoot(0x0)/Pci(0x5,0x7)/Pci(0x0,0x0)/Scsi(0x0,0x1)
+Starting Boot0002 "UEFI ORACLE BlockVolume " from PciRoot(0x0)/Pci(0x5,0x7)/Pci(0x0,0x0)/Scsi(0x0,0x1)
+error: file `/grub/arm64-efi/efi_uga.mod' not found.
+EFI stub: Booting Linux Kernel...
+EFI stub: EFI_RNG_PROTOCOL unavailable
+EFI stub: Loaded initrd from LINUX_EFI_INITRD_MEDIA_GUID device path
+EFI stub: Generating empty DTB
+EFI stub: Exiting boot services...
+
+[1;32m<<< NixOS Stage 1 >>>[0m
+
+loading module virtio_balloon...
+loading module virtio_console...
+loading module virtio_rng...
+loading module virtio_gpu...
+loading module dm_mod...
+running udev...
+Starting systemd-udevd version 256.10
+kbd_mode: KDSKBMODE: Inappropriate ioctl for device
+%Gstarting device mapper and LVM...
+checking /dev/disk/by-uuid/324b7fb2-1cf1-4a8e-bffb-dc3940c8a001...
+fsck (busybox 1.36.1)
+[fsck.ext4 (1) -- /mnt-root/] fsck.ext4 -a /dev/disk/by-uuid/324b7fb2-1cf1-4a8e-bffb-dc3940c8a001
+nixos-root: clean, 64783/3211264 files, 657282/12844795 blocks
+mounting /dev/disk/by-uuid/324b7fb2-1cf1-4a8e-bffb-dc3940c8a001 on /...
+
+[1;32m<<< NixOS Stage 2 >>>[0m
+
+running activation script...
+setting up /etc...
+starting systemd...
+[!p]104[?7h
+Welcome to [1;34mNixOS 24.11 (Vicuna)[0m!
+
+[[0;1;31m  !!  [0m] This OS version (NixOS 24.11 (Vicuna)) is past its end-of-support date (2025-06-30)
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/getty[0m.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/modprobe[0m.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/serial-getty[0m.
+[[0;32m  OK  [0m] Created slice [0;1;39mSlice /system/systemd-fsck[0m.
+[[0;32m  OK  [0m] Created slice [0;1;39mUser and Session Slice[0m.
+[[0;32m  OK  [0m] Started [0;1;39mDispatch Password Requests to Console Directory Watch[0m.
+[[0;32m  OK  [0m] Started [0;1;39mForward Password Requests to Wall Directory Watch[0m.
+         Expecting device [0;1;39m/dev/disk/by-uuid/594C-1E58[0m...
+         Expecting device [0;1;39m/dev/ttyAMA0[0m...
+[[0;32m  OK  [0m] Reached target [0;1;39mLocal Encrypted Volumes[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mContainers[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPath Units[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mRemote File Systems[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSlice Units[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mSwaps[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mProcess Core Dump Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mCredential Encryption/Decryption[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Audit Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Socket (/dev/log)[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mJournal Sockets[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mUserspace Out-Of-Memory (OOM) Killer Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Control Socket[0m.
+[[0;32m  OK  [0m] Listening on [0;1;39mudev Kernel Socket[0m.
+         Mounting [0;1;39mHuge Pages File System[0m...
+         Mounting [0;1;39mPOSIX Message Queue File System[0m...
+         Mounting [0;1;39mKernel Debug File System[0m...
+         Starting [0;1;39mCreate List of Static Device Nodes[0m...
+         Starting [0;1;39mLoad Kernel Module configfs[0m...
+         Starting [0;1;39mLoad Kernel Module drm[0m...
+         Starting [0;1;39mLoad Kernel Module efi_pstore[0m...
+         Starting [0;1;39mLoad Kernel Module fuse[0m...
+         Starting [0;1;39mmount-pstore.service[0m...
+         Starting [0;1;39mJournal Service[0m...
+         Starting [0;1;39mLoad Kernel Modules[0m...
+         Starting [0;1;39mRemount Root and Kernel File Systems[0m...
+         Starting [0;1;39mColdplug All udev Devices[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mHuge Pages File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mPOSIX Message Queue File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Debug File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate List of Static Device Nodes[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module configfs[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module drm[0m.
+[[0;32m  OK  [0m] Started [0;1;39mJournal Service[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module efi_pstore[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Module fuse[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad Kernel Modules[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mRemount Root and Kernel File Systems[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mColdplug All udev Devices[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mmount-pstore.service[0m.
+         Mounting [0;1;39mFUSE Control File System[0m...
+         Mounting [0;1;39mKernel Configuration File System[0m...
+         Starting [0;1;39mFirewall[0m...
+         Starting [0;1;39mFlush Journal to Persistent Storage[0m...
+         Starting [0;1;39mLoad/Save OS Random Seed[0m...
+         Starting [0;1;39mApply Kernel Variables[0m...
+         Starting [0;1;39mCreate Static Device Nodes in /dev gracefully[0m...
+[[0;32m  OK  [0m] Mounted [0;1;39mFUSE Control File System[0m.
+[[0;32m  OK  [0m] Mounted [0;1;39mKernel Configuration File System[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mLoad/Save OS Random Seed[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mApply Kernel Variables[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mFlush Journal to Persistent Storage[0m.
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev gracefully[0m.
+         Starting [0;1;39mCreate Static Device Nodes in /dev[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mCreate Static Device Nodes in /dev[0m.
+[[0;32m  OK  [0m] Reached target [0;1;39mPreparation for Local File Systems[0m.
+         Starting [0;1;39mRule-based Manager for Device Events and Files[0m...
+[[0;32m  OK  [0m] Finished [0;1;39mFirewall[0m.
+[[0;32m  OK  [0m] Started [0;1;39mRule-based Manager for Device Events and Files[0m.
+[[0;32m  OK  [0m] Found device [0;1;39m/dev/ttyAMA0[0m.

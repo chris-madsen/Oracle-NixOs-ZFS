@@ -1,0 +1,37 @@
+cloud-architecture-diagram
+
+// Diagram-as-Code for NixOS, ZFS and LVM architecture
+Cloud_Provider [icon: oracle-cloud, color: orange] {
+  Instance [icon: compute, label: "Oracle ARM (24GB RAM)"] {
+    
+    group Storage_Stack [color: blue] {
+      Disk [icon: storage, label: "200GB Storage"] {
+        GPT [label: "GPT Partition Table"]
+        
+        ESP [icon: folder, label: "/boot (FAT32)"]
+        
+        ZFS_Pool [icon: database, label: "ZFS Pool: zroot"] {
+          Root_FS [label: "/ (NixOS System)"]
+        }
+        
+        LVM_PV [icon: layers, label: "LVM Physical Volume"] {
+          Thin_Pool [label: "LVM Thin Pool"] {
+            Data_Vol [label: "/data (XFS)"]
+          }
+        }
+      }
+    }
+    
+    group Memory_Optimization [color: green] {
+      ZRAM [icon: memory, label: "ZRAM (Swap in RAM)"]
+      ARC [label: "ZFS ARC Cache"]
+    }
+  }
+}
+
+// Logical connections
+Disk -> GPT
+GPT -> ESP
+GPT -> ZFS_Pool
+GPT -> LVM_PV
+Memory_Optimization -> Instance

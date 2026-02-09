@@ -16,55 +16,6 @@
         nixos-anywhere = nixos-anywhere.packages.${system}.default;
       });
 
-      devShells = forAllSystems (system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        {
-          # Devshell for the E8miner project (Python shell + Rust engine via PyO3/maturin).
-          e8miner = pkgs.mkShell {
-            packages = with pkgs; [
-              bashInteractive
-              git
-              curl
-              jq
-
-              python312
-              uv
-              maturin
-
-              rustc
-              cargo
-              rust-analyzer
-              rustfmt
-              clippy
-
-              gcc
-              pkg-config
-              cmake
-              ninja
-              openssl
-              zlib
-            ];
-
-            env = {
-              RUST_BACKTRACE = "1";
-              PIP_DISABLE_PIP_VERSION_CHECK = "1";
-              UV_CACHE_DIR = ".cache/uv";
-              CARGO_HOME = ".cache/cargo";
-              RUSTUP_HOME = ".cache/rustup";
-            };
-
-            shellHook = ''
-              mkdir -p .cache/uv .cache/cargo .cache/rustup
-              echo "--- E8miner devshell ---"
-              python --version
-              rustc --version
-              maturin --version
-            '';
-          };
-        });
-
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
       specialArgs = { inherit inputs; };

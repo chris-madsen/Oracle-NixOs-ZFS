@@ -1,0 +1,52 @@
+# Editor / assistant
+.aider*
+.vscode/
+.idea/
+.consilium*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.coverage
+coverage.xml
+
+# Virtualenvs
+.venv/
+venv/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+target/
+
+# Logs / runtime artifacts
+*.log
+runtime.jsonl
+progress_runtime.jsonl
+replay_runtime.jsonl
+E8miner/runtime.jsonl
+E8miner/progress_runtime.jsonl
+E8miner/.run/
+E8miner/.uv-cache/
+E8miner/external/
+
+# Nix
+result
+result-*
+.direnv/
+**/.nix/
+**/.nix-*
+
+# Terraform / OpenTofu
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+.terraform.lock.hcl

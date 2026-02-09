@@ -1,0 +1,16 @@
+# /root/installer/nixos-install.service
+[Unit]
+Description=Automated NixOS Install
+Wants=network.target
+After=network.target
+ConditionPathExists=/root/installer/install.sh
+
+[Service]
+Type=oneshot
+ExecStart=/root/installer/install.sh
+StandardOutput=journal+console
+StandardError=journal+console
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
