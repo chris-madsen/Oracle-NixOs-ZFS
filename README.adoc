@@ -1,0 +1,156 @@
+= Oracle Cloud NixOS Architecture: ZFS + XFS
+:toc: macro
+:toc-title: Содержание
+:idprefix:
+:idseparator: -
+:sectnums:
+:source-highlighter: rouge
+:imagesdir: .
+
+// Lead paragraph (введение без рамок)
+This project deploys **NixOS + ZFS** on Oracle Cloud Infrastructure (OCI) ARM Always Free instances using **OpenTofu**. The instance boots from a custom image imported from a public QCOW2 URL.
+
+toc::[]
+
+== Quickstart
+
+. **Configure**: Set OCI credentials in `terraform.tfvars`.
+. **Image**: Override `nixos_zfs_public_image_url` if needed.
+. **Deploy**:
++
+[source,bash]
+----
+tofu init
+tofu apply -auto-approve
+----
+
+. **Connect**:
++
+[source,bash]
+----
+IP="$(tofu output -raw server_public_ip)"
+ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@"$IP"
+----
+
+---
+
+== Storage Layout
+
+image::arch.svg[Architecture Diagram, 800]
+
+=== 1. Operating System — ZFS on Boot Volume
+
+[cols="1,3", options="header"]
+|===
+| Parameter | Value
+| **Size** | 100 GB (OCI Boot Volume)
+| **Mounts** | `/`, `/nix`, `/tmp`
+| **Structure** | ESP (FAT32) -> `/boot`; ZFS pool -> remainder
+|===
+
+// Сайдбар вместо красного Important - выглядит как нейтральный блок
+.Why ZFS on Boot?
+****
+Using ZFS allows us to mitigate the limitations of network-backed storage:
+
+* **Performance:** ARC caching and compression reduce physical I/O.
+* **Safety:** Atomic snapshots allow instant system rollbacks.
+* **Optimization:** TXG batching smooths write bursts.
+****
+
+**Dataset Tuning:**
+* `/root` (System): `sync=standard` (Stability)
+* `/nix` (Store): `compression=lz4`, `atime=off`, `sync=disabled` (Performance)
+* `/tmp` (Scratch): `sync=disabled` (Speed)
+
+=== 2. Data Storage — LVM-Thin + XFS
+
+[cols="1,3", options="header"]
+|===
+| Parameter | Value
+| **Size** | 100 GB (OCI Data Volume)
+| **Mounts** | `/data`
+| **Stack** | PV -> VG -> Thin Pool -> XFS
+|===
+
+.Why LVM-Thin + XFS?
+****
+This volume is isolated for **Docker/Container** workloads. XFS handles parallel I/O better here, and LVM-Thin allows flexible snapshots without ZFS ARC memory contention.
+****
+
+---
+
+== Memory & Snapshots
+
+**Memory Strategy (ARM Optimization)**
+
+* **ZFS ARC**: Capped at ~6–8 GB.
+* **ZRAM**: Enabled (~35% of RAM) to absorb rebuild spikes.
+
+**Snapshot Capability**
+
+[cols="1,3"]
+|===
+| **System** (ZFS) | `zfs snapshot zroot/root@tag` (Rollbacks)
+| **Data** (LVM) | `lvcreate -s ...` (Short-lived backups)
+| **Disaster** (OCI) | Long-term volume backups (Region failure)
+|===
+
+---
+
+== Troubleshooting
+
+* **ZFS filesystems not mounted?** -> Check `mountpoint=legacy`.
+* **LVM volumes inactive?** -> Check `dm_thin_pool` in kernel modules.
+* **OOM Killer?** -> Tune `zfs_arc_max` lower.
+
+---
+
+== Structure
+
+[source,tree]
+----
+// TREE_START
+.
+├── disk
+│   ├── configuration.nix
+│   ├── console-history-latest.txt
+│   ├── deploy.sh
+│   ├── disk-config.nix
+│   ├── flake.nix
+│   ├── install.sh
+│   ├── iscsi_install_master.sh
+│   ├── nixos-install.service
+│   ├── nixos-kexec-bootstrap.sh
+│   ├── terraform.tfvars
+│   ├── trigger_kexec.sh
+│   ├── upload.sh
+│   └── zfs-provision.sh
+├── docs
+│   ├── ai
+│   │   ├── current_state.md
+│   │   ├── decisions.md
+│   │   ├── done.md
+│   │   ├── errors_and_problems.md
+│   │   ├── plan.md
+│   │   └── todo.md
+│   ├── consilium_execution_blueprint_v9.1.html
+│   ├── consilium_execution_blueprint_v9.1.md
+│   └── consilium_execution_blueprint_v9.1.pdf
+├── scripts
+│   ├── make_compact_image_from_boot_backup.sh
+│   └── share_boot_backup_image.sh
+├── arch.eraserdiagram
+├── arch.mermaid
+├── arch.svg
+├── .gitignore
+├── main.tf
+├── Makefile
+├── README.adoc
+├── .terraform.lock.hcl
+├── terraform.tfvars
+└── variables.tf
+
+4 directories, 34 files
+// TREE_END
+----
