@@ -125,9 +125,7 @@ This volume is isolated for **Docker/Container** workloads. XFS handles parallel
 │   └── zfs-provision.sh
 ├── docs                 # Documentation assets
 │   ├── ai
-│   ├── consilium_execution_blueprint_v9.1.html
-│   ├── consilium_execution_blueprint_v9.1.md
-│   └── consilium_execution_blueprint_v9.1.pdf
+│   └── consilium_execution_blueprint_v9.1.md
 ├── scripts              # Setup & backup utilities
 │   ├── make_compact_image_from_boot_backup.sh
 │   └── share_boot_backup_image.sh
