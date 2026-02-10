@@ -130,7 +130,6 @@ This volume is isolated for **Docker/Container** workloads. XFS handles parallel
 │   ├── make_compact_image_from_boot_backup.sh
 │   └── share_boot_backup_image.sh
 ├── arch.eraserdiagram
-├── arch.mermaid
 ├── arch.svg             # Architecture diagram (Vector)
 ├── .gitignore
 ├── main.tf              # OpenTofu infrastructure definition
