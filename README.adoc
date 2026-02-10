@@ -1,13 +1,11 @@
 = Oracle Cloud NixOS Architecture: ZFS + XFS
 :toc: macro
-:toc-title: Содержание
 :idprefix:
 :idseparator: -
 :sectnums:
 :source-highlighter: rouge
 :imagesdir: .
 
-// Lead paragraph (введение без рамок)
 This project deploys **NixOS + ZFS** on Oracle Cloud Infrastructure (OCI) ARM Always Free instances using **OpenTofu**. The instance boots from a custom image imported from a public QCOW2 URL.
 
 toc::[]
@@ -48,7 +46,6 @@ image::arch.svg[Architecture Diagram, 800]
 | **Structure** | ESP (FAT32) -> `/boot`; ZFS pool -> remainder
 |===
 
-// Сайдбар вместо красного Important - выглядит как нейтральный блок
 .Why ZFS on Boot?
 ****
 Using ZFS allows us to mitigate the limitations of network-backed storage:
