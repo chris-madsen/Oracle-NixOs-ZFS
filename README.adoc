@@ -112,45 +112,37 @@ This volume is isolated for **Docker/Container** workloads. XFS handles parallel
 ----
 // TREE_START
 .
-├── disk
-│   ├── configuration.nix
+├── disk                 # Disk partitioning & NixOS configuration
+│   ├── configuration.nix    # Main NixOS system config
 │   ├── console-history-latest.txt
 │   ├── deploy.sh
-│   ├── disk-config.nix
-│   ├── flake.nix
+│   ├── disk-config.nix      # Disko partitioning layout
+│   ├── flake.nix            # NixOS Flake entry point
 │   ├── install.sh
 │   ├── iscsi_install_master.sh
 │   ├── nixos-install.service
 │   ├── nixos-kexec-bootstrap.sh
-│   ├── terraform.tfvars
+│   ├── terraform.tfvars     # User configuration (ignored by git)
 │   ├── trigger_kexec.sh
 │   ├── upload.sh
 │   └── zfs-provision.sh
-├── docs
+├── docs                 # Documentation assets
 │   ├── ai
-│   │   ├── current_state.md
-│   │   ├── decisions.md
-│   │   ├── done.md
-│   │   ├── errors_and_problems.md
-│   │   ├── plan.md
-│   │   └── todo.md
 │   ├── consilium_execution_blueprint_v9.1.html
 │   ├── consilium_execution_blueprint_v9.1.md
 │   └── consilium_execution_blueprint_v9.1.pdf
-├── scripts
+├── scripts              # Setup & backup utilities
 │   ├── make_compact_image_from_boot_backup.sh
 │   └── share_boot_backup_image.sh
 ├── arch.eraserdiagram
 ├── arch.mermaid
-├── arch.svg
+├── arch.svg             # Architecture diagram (Vector)
 ├── .gitignore
-├── main.tf
+├── main.tf              # OpenTofu infrastructure definition
 ├── Makefile
 ├── README.adoc
 ├── .terraform.lock.hcl
-├── terraform.tfvars
-└── variables.tf
-
-4 directories, 34 files
+├── terraform.tfvars     # User configuration (ignored by git)
+└── variables.tf         # Terraform user variables
 // TREE_END
 ----
