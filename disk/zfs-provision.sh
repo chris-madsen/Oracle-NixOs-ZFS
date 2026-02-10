@@ -17,7 +17,7 @@ cat <<EOF > /root/installer/disk-config.nix
     disk = {
       main = {
         type = "disk";
-        device = "/dev/sdb"; # Проверьте lsblk, если диск не sdb
+        device = "/dev/sdb"; 
         content = {
           type = "gpt";
           partitions = {
@@ -77,7 +77,6 @@ cat <<'EOF' > /root/installer/install.sh
 #!/usr/bin/env bash
 set -e
 
-# Весь вывод скрипта направляем в консоль, чтобы вы видели процесс без входа по SSH
 exec > /dev/console 2>&1
 
 echo "---------------------------------------------------------"
@@ -98,7 +97,7 @@ pkill iscsid || true
 iscsid
 
 echo ">>> [AUTO-INSTALL] 2. Discovery & Login..."
-# Небольшой цикл повтора, если сеть еще поднимается
+
 for i in {1..5}; do
     if iscsiadm -m discovery -t sendtargets -p $ISCSI_IP:3260; then
         break
@@ -148,6 +147,4 @@ echo ">>> Payload created in /root/installer."
 echo ">>> Launching kexec bootstrap..."
 
 # --- 4. Launch Kexec ---
-# ИСПРАВЛЕНО: Убраны аргументы. По умолчанию inject=1 и root-fstab=1.
-# Это именно то, что нам нужно.
 ./nixos-kexec-bootstrap.sh

@@ -1,1 +1,0 @@
-/media/ilja/DATA/soft/sre-consilium/requirements.txt

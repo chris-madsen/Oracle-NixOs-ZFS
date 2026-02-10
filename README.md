@@ -1,8 +1,36 @@
 # Oracle Cloud NixOS Architecture: ZFS + XFS (100 + 100)
 
-This project deploys NixOS on Oracle Cloud Infrastructure (OCI) ARM Always Free instances using OpenTofu with cloud-init + kexec automation.
+This project deploys NixOS + ZFS on Oracle Cloud Infrastructure (OCI) ARM Always Free instances using OpenTofu.
 
-Miner subproject (Functional Core + DDD): see `E8miner/README.md`.
+The instance boots from a custom image that is imported from a public QCOW2 URL (Object Storage).
+
+
+
+## Quickstart (OpenTofu)
+
+1) Configure OCI credentials + settings in `terraform.tfvars`.
+
+2) (Optional) Override the public image URL:
+
+   - set `nixos_zfs_public_image_url` in `terraform.tfvars`, or
+   - pass `-var nixos_zfs_public_image_url=...` to `tofu`.
+
+3) Deploy:
+
+    tofu init
+    tofu plan
+    tofu apply -auto-approve
+
+   If your IAM user can't create quotas, set `enable_quota_guardrails=false` in `terraform.tfvars`.
+
+4) Connect:
+
+    IP="$(tofu output -raw server_public_ip)"
+    ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no root@"$IP"
+
+5) Destroy:
+
+    tofu destroy -auto-approve
 
 The architecture is intentionally optimized for:
 
@@ -15,6 +43,8 @@ The architecture is intentionally optimized for:
 ---
 
 ## Storage Layout (100 GB + 100 GB)
+
+![Architecture Diagram](arch.svg)
 
 ### 1. Operating System — ZFS on Boot Volume (100 GB)
 
@@ -184,56 +214,25 @@ Used for:
 - boot volume backups (system)
 - data volume backups (`/data`)
 
-Triggered via OpenTofu:
-
-    tofu apply \
-      -var create_volume_snapshots=true \
-      -target oci_core_volume_backup.boot_volume_snapshot \
-      -target oci_core_volume_backup.data_volume_snapshot
-
 ---
 
 ## Deployment Workflow
 
-1. Infrastructure
+1. Import custom image
 
-   OpenTofu creates:
+   OpenTofu imports an `oci_core_image` from `var.nixos_zfs_public_image_url` (public QCOW2 in Object Storage).
 
-   - VCN and subnet  
-   - OCI instance  
-   - Boot volume (100 GB)  
-   - Data volume (100 GB)  
+2. Launch instance
 
-2. Configuration Preparation
+   OpenTofu launches the Always Free ARM instance with `source_type = "image"`.
 
-   The following files are generated:
-
-   - `flake.nix`  
-   - `configuration.nix`  
-   - `disk-config.nix`  
-
-3. Bootstrap
-
-   Cloud-init downloads a kexec-based NixOS installer and switches into it.
-
-4. Provisioning
-
-   - `disko` partitions the disks  
-   - a ZFS pool is created on the boot volume  
-   - LVM-thin and XFS are created on the data volume  
-   - NixOS is installed from the flake  
-
-5. Reboot
+3. Boot
 
    The system boots directly into NixOS on ZFS.
 
 ---
 
 ## Troubleshooting
-
-- kexec boot freezes with messages about `initrd.target` or `default.target`:
-
-  Ensure `KEXEC_ROOT_FSTAB=1` is set so the installer preserves `root=fstab` in the kernel command line.
 
 - ZFS pool imports but filesystems are not mounted:
 
@@ -253,4 +252,4 @@ Triggered via OpenTofu:
 
 - `/data` is intended for containers and services.
 - Docker or containerd `data-root` should be moved to `/data`.
-- If device names differ from `/dev/sda` and `/dev/sdc`, update `disk-config.nix`.
+- If device names differ from `/dev/sda` and `/dev/sdc`, adjust your local provisioning accordingly.

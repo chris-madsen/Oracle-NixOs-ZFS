@@ -20,3 +20,15 @@ variable "kexec_source_url" {}
 variable "create_volume_snapshots" {
   default = false
 }
+
+# Public QCOW2 URL of the exported NixOS+ZFS image.
+# This is consumed by `oci_core_image` import in `main.tf`.
+variable "nixos_zfs_public_image_url" {
+  default = "https://objectstorage.eu-stockholm-1.oraclecloud.com/n/axp62ct7ei3n/b/nixos-zfs-images/o/nixos-zfs-boot-2026-02-09.qcow2"
+}
+
+variable "enable_quota_guardrails" {
+  description = "Create OCI tenancy-level quotas to stay within Always Free limits."
+  type        = bool
+  default     = true
+}

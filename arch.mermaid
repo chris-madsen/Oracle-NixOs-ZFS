@@ -1,0 +1,35 @@
+flowchart TB
+    %% Nodes
+    GPT(GPT Partition Table)
+    Boot[("/boot (FAT32)")]
+    MemOpt(Memory_Optimization)
+
+    subgraph ZFS["ZFS POOL: ZROOT"]
+        direction TB
+        Root["/ (NixOS
+System)"]
+    end
+
+    subgraph LVMph["LVM PHYSICAL VOLUME"]
+        direction TB
+        subgraph LVMthin["LVM THIN POOL"]
+            direction TB
+            Data["/data (XFS)"]
+        end
+    end
+
+    %% Connections
+    GPT --> Boot
+    GPT --> ZFS
+    GPT --> LVMph
+    MemOpt --> LVMph
+
+    %% Styles (Approximate)
+    style ZFS fill:#ffffff,stroke:#4caf50,stroke-width:2px
+    style LVMph fill:#ffffff,stroke:#4caf50,stroke-width:2px
+    style LVMthin fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+    style Root fill:#ffffff,stroke:#000000,stroke-width:2px
+    style Data fill:#ffffff,stroke:#000000,stroke-width:2px
+    style GPT fill:#ffffff,stroke:#000000,stroke-width:2px
+    style Boot fill:#ffffff,stroke:#000000,stroke-width:2px
+    style MemOpt fill:#ffffff,stroke:#000000,stroke-width:2px

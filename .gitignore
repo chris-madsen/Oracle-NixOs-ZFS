@@ -49,4 +49,3 @@ result-*
 *.tfstate.*
 crash.log
 crash.*.log
-.terraform.lock.hcl
